@@ -1,0 +1,80 @@
+{
+    "identifier": "cc.aeron.nova-isort",
+    "name": "isort",
+    "organization": "Aeron",
+    "description": "isort, a Python utility to sort imports, for Nova.",
+    "version": "0.1.0",
+    "categories": ["formatters", "commands"],
+    "repository": "https://github.com/Aeron/isort.novaextension",
+    "bugs": "https://github.com/Aeron/isort.novaextension/issues",
+    "license": "Apache-2.0",
+    "main": "main.js",
+    "activationEvents": [
+        "onLanguage:python"
+    ],
+    "entitlements": {
+        "process": true
+    },
+    "commands": {
+        "editor": [
+            {
+                "title": "Sort imports with isort",
+                "command": "sortImportsWithIsort",
+                "shortcut": "cmd-shift-I",
+                "filters": {
+                    "syntaxes": ["python"]
+                }
+            }
+        ]
+    },
+    "config": [
+        {
+            "key": "cc.aeron.nova-isort.executablePath",
+            "title": "Executable Path",
+            "description": "Path to the isort executable.",
+            "type": "path",
+            "default": "/usr/local/bin/isort"
+        },
+        {
+            "key": "cc.aeron.nova-isort.commandArguments",
+            "title": "Command Arguments",
+            "description": "Additional arguments. The --quiet option always set.",
+            "type": "string",
+            "default": null
+        },
+        {
+            "key": "cc.aeron.nova-isort.formatOnSave",
+            "title": "Format a file on save.",
+            "type": "boolean",
+            "default": true
+        }
+    ],
+    "configWorkspace": [
+        {
+            "key": "cc.aeron.nova-isort.executablePath",
+            "title": "Executable Path",
+            "description": "Path to the isort executable.",
+            "type": "path",
+            "placeholder": "/usr/local/bin/isort"
+        },
+        {
+            "key": "cc.aeron.nova-isort.commandArguments",
+            "title": "Command Arguments",
+            "description": "Additional arguments. The --quiet option always set.",
+            "type": "string"
+        },
+        {
+            "key": "cc.aeron.nova-isort.venvPath",
+            "title": "Virtual Environment Path",
+            "description": "Path to a venv directory. It’s the equivalent to use of the --virtual-env option.",
+            "type": "string",
+            "placeholder": ".venv"
+        },
+        {
+            "key": "cc.aeron.nova-isort.formatOnSave",
+            "title": "Format a file on save.",
+            "type": "boolean",
+            "default": true
+        }
+    ]
+}
