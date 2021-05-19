@@ -3,7 +3,7 @@
     "name": "isort",
     "organization": "Aeron",
     "description": "isort, a Python utility to sort imports, for Nova.",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "categories": ["formatters", "commands"],
     "repository": "https://github.com/Aeron/isort.novaextension",
     "bugs": "https://github.com/Aeron/isort.novaextension/issues",
