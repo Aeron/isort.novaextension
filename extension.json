@@ -44,7 +44,7 @@
         },
         {
             "key": "cc.aeron.nova-isort.formatOnSave",
-            "title": "Format a file on save.",
+            "title": "Format on a file save",
             "type": "boolean",
             "default": true
         }
@@ -67,12 +67,12 @@
             "key": "cc.aeron.nova-isort.venvPath",
             "title": "Virtual Environment Path",
             "description": "Path to a venv directory. It’s the equivalent to use of the --virtual-env option.",
-            "type": "string",
+            "type": "path",
             "placeholder": ".venv"
         },
         {
             "key": "cc.aeron.nova-isort.formatOnSave",
-            "title": "Format a file on save.",
+            "title": "Format on a file save",
             "type": "boolean",
             "default": true
         }
