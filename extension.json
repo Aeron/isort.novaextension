@@ -73,10 +73,10 @@
         },
         {
             "key": "cc.aeron.nova-isort.formatOnSave",
-            "title": "Format on a file save (overrides global setting)",
+            "title": "Format on a file save",
             "type": "enum",
-            "values": [["null", "use global setting"], ["true", "yes"], ["false", "no"]],
-            "default": "null"
+            "values": [[-1, "Global"], [1, "Yes"], [0, "No"]],
+            "default": -1
         }
     ]
 }
