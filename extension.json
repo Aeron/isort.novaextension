@@ -74,8 +74,9 @@
         {
             "key": "cc.aeron.nova-isort.formatOnSave",
             "title": "Format on a file save",
-            "type": "boolean",
-            "default": true
+            "type": "enum",
+            "values": [[-1, "Global"], [1, "Yes"], [0, "No"]],
+            "default": -1
         }
     ]
 }
