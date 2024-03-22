@@ -3,10 +3,10 @@ class Formatter {
         this.config = config;
     }
 
-    async getProcess() {
-        const executablePath = nova.path.expanduser(this.config.get("executablePath"));
-        const commandArguments = this.config.get("commandArguments");
-        const venvPath = this.config.get("venvPath");
+    getProcess() {
+        const executablePath = nova.path.expanduser(this.config.executablePath());
+        const commandArguments = this.config.commandArguments();
+        const venvPath = this.config.venvPath();
         const defaultOptions = ["--quiet", "-"];  // TODO: find a way to use --diff
 
         if (!nova.fs.stat(executablePath)) {
@@ -25,7 +25,7 @@ class Formatter {
         }
 
         if (venvPath) {
-            options = [...options, "--virtual-env=" + venvPath];
+            options = [...options, `--virtual-env=${venvPath}`];
         }
 
         options = [...options, ...defaultOptions].filter((option) => option !== "");
@@ -40,21 +40,17 @@ class Formatter {
         );
     }
 
-    async getPromiseToFormat(editor) {
-        if (!this.config.get("formatOnSave")) return;
-
-        return new Promise((resolve, reject) => {
-            this.format(editor, resolve, reject);
-        });
+    provideFormat(editor) {
+        return new Promise((resolve, reject) => this.format(editor, resolve, reject));
     }
 
-    async format(editor, resolve=null, reject=null) {
+    format(editor, resolve = null, reject = null) {
         if (editor.document.isEmpty) {
             if (reject) reject("empty file");
             return;
         }
 
-        let process = await this.getProcess();
+        let process = this.getProcess();
 
         if (!process) {
             if (reject) reject("no process");
@@ -77,7 +73,9 @@ class Formatter {
                 let result = editor.edit((edit) => {
                     if (formattedContent !== content) {
                         console.log("Formatting " + filePath);
-                        edit.replace(textRange, formattedContent, InsertTextFormat.PlainText);
+                        edit.replace(
+                            textRange, formattedContent, InsertTextFormat.PlainText
+                        );
                     } else {
                         console.log("Nothing to format");
                     }
