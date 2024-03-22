@@ -3,8 +3,11 @@
     "name": "isort",
     "organization": "Aeron",
     "description": "isort, a Python utility to sort imports, for Nova.",
-    "version": "1.0.3",
-    "categories": ["formatters", "commands"],
+    "version": "1.0.4",
+    "categories": [
+        "formatters",
+        "commands"
+    ],
     "repository": "https://github.com/Aeron/isort.novaextension",
     "bugs": "https://github.com/Aeron/isort.novaextension/issues",
     "license": "Apache-2.0",
@@ -23,7 +26,9 @@
                 "command": "sortImportsWithIsort",
                 "shortcut": "cmd-shift-I",
                 "filters": {
-                    "syntaxes": ["python"]
+                    "syntaxes": [
+                        "python"
+                    ]
                 }
             }
         ]
@@ -75,7 +80,20 @@
             "key": "cc.aeron.nova-isort.formatOnSave",
             "title": "Format on a file save",
             "type": "enum",
-            "values": [[-1, "Global"], [1, "Yes"], [0, "No"]],
+            "values": [
+                [
+                    -1,
+                    "Global"
+                ],
+                [
+                    1,
+                    "Yes"
+                ],
+                [
+                    0,
+                    "No"
+                ]
+            ],
             "default": -1
         }
     ]

@@ -2,6 +2,15 @@
 
 These versions follow [Semantic Versioning 2.0](https://semver.org).
 
+## 1.0.4 (2023-03-22)
+
+This patch is mainly refactoring and optimizations. And a single fix for potential
+issues with user options deduplication, uniformity, etc.
+
+### Fixed
+
+- Commands’ long and short user options handling
+
 ## 1.0.3 (2023-07-27)
 
 ### Fixed
