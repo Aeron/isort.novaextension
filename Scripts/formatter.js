@@ -1,39 +1,37 @@
+const utils = require("./utils");
+
 class Formatter {
     constructor(config) {
         this.config = config;
     }
 
+    getProcessOptions(filename = null) {
+        const defaultOptions = ["--quiet", "-"];  // TODO: find a way to use --diff
+        const commandArguments = this.config.commandArguments();
+        const extraOptions = utils.normalizeOptions(commandArguments);
+
+        const venvPath = this.config.venvPath();
+        const venvOptions = (venvPath)
+            ? [`--virtual-env=${venvPath}`]
+            : [];
+
+        return Array.from(new Set([...extraOptions, ...venvOptions, ...defaultOptions]));
+    }
+
     getProcess() {
         const executablePath = nova.path.expanduser(this.config.executablePath());
-        const commandArguments = this.config.commandArguments();
-        const venvPath = this.config.venvPath();
-        const defaultOptions = ["--quiet", "-"];  // TODO: find a way to use --diff
 
         if (!nova.fs.stat(executablePath)) {
             console.error(`Executable ${executablePath} does not exist`);
             return;
         }
 
-        var options = [];
-
-        if (commandArguments) {
-            options = commandArguments
-                .replaceAll("\n", " ")
-                .split(" ")
-                .map((option) => option.trim())
-                .filter((option) => option !== " ");
-        }
-
-        if (venvPath) {
-            options = [...options, `--virtual-env=${venvPath}`];
-        }
-
-        options = [...options, ...defaultOptions].filter((option) => option !== "");
+        const options = this.getProcessOptions();
 
         return new Process(
             executablePath,
             {
-                args: Array.from(new Set(options)),
+                args: options,
                 stdio: "pipe",
                 cwd: nova.workspace.path,  // NOTE: must be explicitly set
             }
